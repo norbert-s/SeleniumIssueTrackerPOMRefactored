@@ -1,0 +1,9 @@
+~$data.xlsx
+
+.idea
+*.iws
+*.iml
+*.ipr
+
+
+*.log

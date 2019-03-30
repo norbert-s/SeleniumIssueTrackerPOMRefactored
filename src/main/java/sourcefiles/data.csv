@@ -1,0 +1,19 @@
+validTitle;asd
+invalidTitle;we
+validText;dfg
+invalidText;wq
+validCreatedBy;lkj
+invalidCreatedBy;rt
+assignedTo;robert
+assignedTo2;Hubba Bubba
+invalidAssignedTo;Bahama
+statusText;In QA
+invalidStatus;Orange
+errId;id field is mandatory, please provide a valid id
+errTitle;title field is mandatory- must be at least 3 and maximum 255 characters
+errText;text field is mandatory- must be at least 3 and maximum 3000 characters
+errCreatedBy;created_by field is mandatory- must be at least 3 and maximum 255 characters
+success;Successfully created
+successUpdate;Successfully updated
+errDeleteId;Please enter a valid id!
+QueryStatusActiveWhenDbIsEmpty;There is no data to be found based on your query
