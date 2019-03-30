@@ -1,1 +1,1 @@
-# SeleniumIssueTrackerSecond
+# SeleniumIssueTrackerPOMRefactored
