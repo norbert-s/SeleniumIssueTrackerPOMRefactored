@@ -1,3 +1,4 @@
+
 import base.Base;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
@@ -8,14 +9,14 @@ import pageobject.SubmitIssue;
 import java.io.IOException;
 
 
-public class SubmitIssueTest   {
+public class SubmitIssueTestIT {
     public SubmitIssue s;
     private WebDriverWait wait;
 
     Base base;
 //    WebDriver d;
 
-    SubmitIssueTest() throws IOException {
+    SubmitIssueTestIT() throws IOException {
 
     }
 
@@ -97,16 +98,16 @@ public class SubmitIssueTest   {
 //
 //        Assert.assertTrue(s.text3001Chars_C16());
 //    }
-    @Test
-    public void text3000Chars_C17() throws InterruptedException, IOException {
-
-        Assert.assertTrue(s.text3000Chars_C17());
-    }
-    @Test
-    public void title255Chars_C18() throws InterruptedException, IOException {
-
-        Assert.assertTrue(s.title255Chars_C18());
-    }
+//    @Test
+//    public void text3000Chars_C17() throws InterruptedException, IOException {
+//
+//        Assert.assertTrue(s.text3000Chars_C17());
+//    }
+//    @Test
+//    public void title255Chars_C18() throws InterruptedException, IOException {
+//
+//        Assert.assertTrue(s.title255Chars_C18());
+//    }
     @Test
     public void createdBy256Chars_C20() throws InterruptedException, IOException {
 

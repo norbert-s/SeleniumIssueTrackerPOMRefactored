@@ -22,8 +22,8 @@
     </maven-compiler-plugin.version>
     <maven-failsafe-plugin.version>2.21.0
     </maven-failsafe-plugin.version>
-    <!-- Configurable variables -->
     <threads>1</threads>
+    <selectedTests>myTests</selectedTests>
   </properties>
 
   <dependencies>
@@ -39,6 +39,13 @@
       <artifactId>selenium-java</artifactId>
       <version>3.141.59</version>
     </dependency>
+    <!-- https://mvnrepository.com/artifact/org.apache.maven.plugins/maven-compiler-plugin -->
+    <dependency>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <version>3.8.0</version>
+    </dependency>
+
     <!-- https://mvnrepository.com/artifact/org.testng/testng -->
     <dependency>
       <groupId>org.testng</groupId>
@@ -74,6 +81,17 @@
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>2.22.1</version>
+          <configuration>
+            <suiteXmlFiles>
+              <file>testng.xml</file>
+            </suiteXmlFiles>
+            <properties>
+              <property>
+                <name>testnames</name>
+                <value>${selectedTests}</value>
+              </property>
+            </properties>
+          </configuration>
         </plugin>
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
