@@ -12,15 +12,13 @@ public class Data {
     }
 
     public void getDataFromExcel() throws FileNotFoundException {
-        File f = new File("D:\\Idea_Selenium\\Selenium_now\\SeleniumIssueTrackerSecond\\src\\main\\java\\sourcefiles\\data.csv");
+        File f = new File(Prop.prop.getProperty("excel"));
         Scanner scanner = new Scanner (f,"ISO-8859-2");
         String[] stringArray ;
-
         while (scanner.hasNextLine()) {
             String check = scanner.nextLine();
             stringArray = check.split(";");
             map.put(stringArray[0],stringArray[1]);
-//            System.out.println(stringArray[0]+stringArray[1]);
         }
         scanner.close();
 
@@ -30,15 +28,15 @@ public class Data {
 
         String library = Prop.prop.getProperty("sourcefiles");
         FileReader file = new FileReader(library+num+".txt");
-        BufferedReader reader = new BufferedReader(file);
-        StringBuilder string = new StringBuilder();
-        String line = "";
-        String lineConcat="";
-        while((line = reader.readLine())!=null){
-            lineConcat += line;
-        }
+        try(BufferedReader reader = new BufferedReader(file)){
+            String line = "";
+            String lineConcat="";
+            while((line = reader.readLine())!=null){
+                lineConcat += line;
+            }
 
-        return lineConcat;
+            return lineConcat;
+        }
     }
 
     //this will return the string of the looked for string

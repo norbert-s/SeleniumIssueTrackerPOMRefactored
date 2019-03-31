@@ -26,20 +26,20 @@ public class SubmitIssueTestIT {
     }
     @BeforeMethod
     public void setupMethod() throws IOException {
-        base.ChromeInit();
+        base.chromeInit();
         s = new SubmitIssue(base.d);
 
     }
 
-    //    @Test
-//    public void validValuesForTheAPI_C1() throws InterruptedException {
-//        Assert.assertTrue(s.validValuesForTheAPI_C1());
+//        @Test
+//    public void validValuesForTheAPIC1() throws InterruptedException {
+//        Assert.assertTrue(s.validValuesForTheAPIC1());
 //    }
-//
-//    @Test
-//    public void nonValidTitle_C2()  {
-//        Assert.assertTrue(s.nonValidTitle_C2());
-//    }
+
+    @Test
+    public void nonValidTitle_C2()  {
+        Assert.assertTrue(s.nonValidTitle_C2());
+    }
 //
 //    @Test
 //    public void nothingIsEnteredToBested_C3() throws InterruptedException {
@@ -108,11 +108,11 @@ public class SubmitIssueTestIT {
 //
 //        Assert.assertTrue(s.title255Chars_C18());
 //    }
-    @Test
-    public void createdBy256Chars_C20() throws InterruptedException, IOException {
-
-        Assert.assertTrue(s.createdBy256Chars_C20());
-    }
+//    @Test
+//    public void createdBy256Chars_C20() throws InterruptedException, IOException {
+//
+//        Assert.assertTrue(s.createdBy256Chars_C20());
+//    }
     @Test
     public void createdBy255Chars_C21() throws InterruptedException, IOException {
 
@@ -122,6 +122,8 @@ public class SubmitIssueTestIT {
     @AfterMethod
     public void tearDown(){
         base.d.quit();
+        base.d=null;
+        s=null;
 
     }
     @AfterTest

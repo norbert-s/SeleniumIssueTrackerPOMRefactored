@@ -1,5 +1,9 @@
 package pageobject;
 
+
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -7,20 +11,20 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import testdatamanipulation.Data;
 import utility.GetWaits;
-import utility.Prop;
+
 
 import java.io.IOException;
 
 
 
 public class SubmitIssue  extends Data {
+    static final Logger log= LogManager.getLogger("SubmitIssue.class");
     private WebDriver d;
-    Prop p;
+    
     GetWaits getWaits;
-
-
-
+    
     public SubmitIssue(WebDriver d) throws IOException {
+        super();
         this.d = d;
         PageFactory.initElements(d,this);
         getWaits = new GetWaits();
@@ -50,7 +54,6 @@ public class SubmitIssue  extends Data {
     public Boolean success(String value){
         pause();
         String jsonText = jsonResult.getText();
-        //System.out.println(jsonText);
         boolean containsSuccess=false;
         if(jsonText.contains(value)){
             containsSuccess=true;
@@ -60,7 +63,6 @@ public class SubmitIssue  extends Data {
     public Boolean fail(String value){
         pause();
         String jsonText = jsonResult.getText();
-        //System.out.println(jsonText);
         boolean err=false;
         if(jsonText.contains(value)){
             err=true;
@@ -100,7 +102,7 @@ public class SubmitIssue  extends Data {
         statusText.sendKeys(getStatusText());
     }
 
-    public Boolean validValuesForTheAPI_C1() throws InterruptedException {
+    public Boolean validValuesForTheAPI_C1()  {
         sendValidTitle();
         sendValidText();
         sendValidCreatedBy();
@@ -115,13 +117,13 @@ public class SubmitIssue  extends Data {
         return fail(getErrTitle());
     }
 
-    public Boolean nothingIsEntered_C3() throws InterruptedException {
+    public Boolean nothingIsEntered_C3()  {
         submit();
         pause();
         return fail(getErrTitle());
     }
 
-    public Boolean mandatoryFieldsAreEnteredExceptTitle_C4() throws InterruptedException {
+    public Boolean mandatoryFieldsAreEnteredExceptTitle_C4()  {
         sendValidText();
         sendValidCreatedBy();
         submit();
@@ -129,14 +131,14 @@ public class SubmitIssue  extends Data {
         return fail(getErrTitle());
     }
 
-    public Boolean titleIsProvidedButNoTextField_C5() throws InterruptedException {
+    public Boolean titleIsProvidedButNoTextField_C5()  {
         sendValidTitle();
         submit();
         pause();
         return fail(getErrText());
     }
 
-    public Boolean noTextisEntered_C6() throws InterruptedException {
+    public Boolean noTextisEntered_C6()  {
         sendValidTitle();
         sendValidCreatedBy();
         submit();
@@ -144,7 +146,7 @@ public class SubmitIssue  extends Data {
         return fail(getErrText());
     }
     //
-    public Boolean firstTwoButNotThird_C7() throws InterruptedException {
+    public Boolean firstTwoButNotThird_C7()  {
         sendValidTitle();
         sendValidText();
         submit();
@@ -152,7 +154,7 @@ public class SubmitIssue  extends Data {
         return  fail(getErrCreatedBy());
     }
     //
-    public Boolean firstIsTwoChars_C9() throws InterruptedException {
+    public Boolean firstIsTwoChars_C9()  {
         sendInvalidTitle();
         sendValidText();
         sendValidCreatedBy();
@@ -161,18 +163,17 @@ public class SubmitIssue  extends Data {
         return fail(getErrTitle());
     }
 
-    public Boolean secondIsTwoChars_C10() throws InterruptedException {
+    public Boolean secondIsTwoChars_C10()  {
         sendValidTitle();
         sendInvalidText();
         sendValidCreatedBy();
         submit();
         pause();
-        System.out.println(fail(getErrText()));
         return fail(getErrText());
     }
     ////
 //
-    public Boolean thirdIsTwoChars_C11() throws InterruptedException {
+    public Boolean thirdIsTwoChars_C11()  {
         sendValidTitle();
         sendValidText();
         sendInvalidCreatedBy();
@@ -181,7 +182,7 @@ public class SubmitIssue  extends Data {
         return fail(getErrCreatedBy());
     }
 
-    public Boolean FourEntered_C12() throws InterruptedException {
+    public Boolean FourEntered_C12()  {
         sendValidTitle();
         sendValidText();
         sendValidCreatedBy();
@@ -191,7 +192,7 @@ public class SubmitIssue  extends Data {
         return success(getSuccess());
     }
     //
-    public Boolean allFiveEntered_C14() throws InterruptedException, IOException {
+    public Boolean allFiveEntered_C14()  {
         sendValidTitle();
         sendValidText();
         sendValidCreatedBy();
@@ -202,7 +203,7 @@ public class SubmitIssue  extends Data {
         return success(getSuccess());
     }
 
-    public Boolean title256Chars_C15() throws InterruptedException, IOException {
+    public Boolean title256Chars_C15() throws IOException {
         String chars256 = createData(256);
         title.sendKeys(chars256);
         sendValidText();
@@ -214,7 +215,7 @@ public class SubmitIssue  extends Data {
         return fail(getErrTitle());
     }
 
-    public Boolean text3001Chars_C16() throws InterruptedException, IOException {
+    public Boolean text3001Chars_C16() throws IOException {
         String data = createData(3001);
         sendValidTitle();
         text.sendKeys(data);
@@ -224,7 +225,7 @@ public class SubmitIssue  extends Data {
         return fail(getErrText());
     }
 
-    public Boolean text3000Chars_C17() throws InterruptedException, IOException {
+    public Boolean text3000Chars_C17() throws IOException {
         String data = createData(3000);
         sendValidTitle();
         text.sendKeys(data);
@@ -233,7 +234,7 @@ public class SubmitIssue  extends Data {
         return success(getSuccess());
     }
 
-    public Boolean title255Chars_C18() throws InterruptedException, IOException {
+    public Boolean title255Chars_C18() throws IOException {
         String chars256 = createData(255);
         title.sendKeys(chars256);
         sendValidText();
@@ -244,7 +245,7 @@ public class SubmitIssue  extends Data {
         return success(getSuccess());
     }
 
-    public Boolean createdBy256Chars_C20() throws InterruptedException, IOException {
+    public Boolean createdBy256Chars_C20() throws IOException {
         String data = createData(256);
         sendValidTitle();
         sendValidText();
@@ -253,9 +254,9 @@ public class SubmitIssue  extends Data {
         return fail(getErrCreatedBy());
     }
 
-    public Boolean createdBy255Chars_C21() throws InterruptedException, IOException {
+    public Boolean createdBy255Chars_C21() throws IOException {
         String data = createData(255);
-        System.out.println(data);
+        log.info(data);
         sendValidTitle();
         sendValidText();
         createdBy.sendKeys(data);
